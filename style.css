@@ -5,10 +5,11 @@
 
 
 /* =========================================================
-   2. VARIABLES DE COULEUR
+   2. THEMES (LIGHT / DARK / HACKER)
 ========================================================= */
+
+/* Valeurs par défaut (équivalent light avant que JS ne pose les classes) */
 :root {
-    /* Thème par défaut : LIGHT */
     --bg: #ffffff;
     --text: #1a1a1a;
     --secondary: #555;
@@ -16,7 +17,16 @@
     --header-bg: #ffffff;
 }
 
-/* Thème DARK */
+/* Thème clair */
+body.theme-light {
+    --bg: #ffffff;          /* BLANC PUR pour matcher ton image */
+    --text: #1a1a1a;
+    --secondary: #555;
+    --link: #0066cc;
+    --header-bg: #ffffff;
+}
+
+/* Thème sombre */
 body.theme-dark {
     --bg: #0d1117;
     --text: #c9d1d9;
@@ -25,16 +35,7 @@ body.theme-dark {
     --header-bg: #161b22;
 }
 
-/* Thème SOLARIZED (beige chaud) */
-body.theme-solarized {
-    --bg: #fdf6e3;
-    --text: #073642;
-    --secondary: #586e75;
-    --link: #b58900;
-    --header-bg: #eee8d5;
-}
-
-/* Thème HACKER (vert néon) */
+/* Thème hacker */
 body.theme-hacker {
     --bg: #020d06;
     --text: #00ff7f;
@@ -44,10 +45,10 @@ body.theme-hacker {
 }
 
 
-
 /* =========================================================
-   3. GLOBAL (reset + styles de base)
+   3. GLOBAL
 ========================================================= */
+
 body {
     margin: 0;
     padding: 0;
@@ -75,21 +76,11 @@ li {
     margin-bottom: 8px;
 }
 
-/* Supprime l’ombre dans les thèmes clairs */
-body.theme-light .apropos-photo img,
-body.theme-solarized .apropos-photo img {
-    box-shadow: none !important;
-}
-
-/* Ombre subtile en dark/hacker */
-body.theme-dark .apropos-photo img,
-body.theme-hacker .apropos-photo img {
-    box-shadow: 0 0 25px rgba(0,0,0,0.4);
-}
 
 /* =========================================================
-   4. HEADER (Takuya style + hide on scroll)
+   4. HEADER (sticky + hide on scroll)
 ========================================================= */
+
 header {
     padding: 20px;
     background: var(--header-bg);
@@ -97,12 +88,12 @@ header {
     position: sticky;
     top: 0;
     z-index: 10;
-
-    /* transitions pour dark mode + hide */
-    transition: background 0.3s ease, transform 0.3s ease;
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
 }
 
-/* Disparition du header */
+/* caché quand on scrolle vers le bas */
 header.hide {
     transform: translateY(-100%);
 }
@@ -123,6 +114,7 @@ header h2 {
 /* =========================================================
    5. NAVIGATION
 ========================================================= */
+
 nav ul {
     list-style: none;
     padding: 0;
@@ -147,8 +139,9 @@ nav a:hover {
 
 
 /* =========================================================
-   6. BOUTON DARK MODE
+   6. BOUTON DE THÈME + LABEL
 ========================================================= */
+
 #theme-toggle {
     position: absolute;
     top: 20px;
@@ -166,7 +159,6 @@ nav a:hover {
     align-items: center;
     justify-content: center;
 
-    /* transitions pour animation */
     transition:
         transform 0.25s ease,
         background-color 0.25s ease,
@@ -180,26 +172,23 @@ nav a:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* classe ajoutée pendant le clic pour l’animation */
+/* anim clic */
 #theme-toggle.theme-toggle-anim {
     transform: rotate(180deg) scale(1.1);
     background-color: rgba(0, 0, 0, 0.04);
 }
 
-
-/* =========================================================
-   6.1. TEXTE DU THÈME (ANIMÉ)
-========================================================= */
+/* texte du thème */
 #theme-label {
     position: absolute;
     top: 70px;
     right: 20px;
     font-size: 12px;
-    color: var(--secondary);
     opacity: 0.9;
+    color: var(--secondary);
 }
 
-/* Animation appliquée à chaque changement */
+/* anim texte thème */
 #theme-label.theme-label-anim {
     animation: themeLabelFade 0.4s ease;
 }
@@ -215,13 +204,9 @@ nav a:hover {
     }
 }
 
-/* Couleurs spécifiques par thème (optionnel, mais stylé) */
+/* couleurs label par thème (optionnel) */
 body.theme-dark #theme-label {
     color: #58a6ff;
-}
-
-body.theme-solarized #theme-label {
-    color: #b58900;
 }
 
 body.theme-hacker #theme-label {
@@ -229,11 +214,10 @@ body.theme-hacker #theme-label {
 }
 
 
-
-
 /* =========================================================
    7. TITRES
 ========================================================= */
+
 h2 {
     margin-top: 50px;
     margin-bottom: 15px;
@@ -251,7 +235,7 @@ h3 {
    8. SECTIONS SPÉCIFIQUES
 ========================================================= */
 
-/* --- À propos : layout horizontal --- */
+/* --- À propos : texte gauche / photo droite --- */
 .apropos-section {
     display: flex;
     align-items: center;
@@ -262,14 +246,33 @@ h3 {
 
 .apropos-text {
     flex: 1;
+    line-height: 1.6;
 }
 
+/* bloc photo */
+.apropos-photo {
+    flex: 0 0 auto;
+    display: flex;
+    justify-content: flex-end;
+}
+
+/* ⚠️ Image de profil
+   - on part de gaetan_profile_circle_no_shadow.png (cercle + fond transparent)
+   - on ne rajoute PAS d'ombre en thème clair pour éviter l'anneau
+*/
 .apropos-photo img {
     width: 200px;
     height: 200px;
-    object-fit: cover;
     border-radius: 50%;
+    object-fit: cover;
     display: block;
+    box-shadow: none; /* thème clair : aucune ombre */
+}
+
+/* On peut ajouter une ombre légère uniquement sur les thèmes sombres si tu veux */
+body.theme-dark .apropos-photo img,
+body.theme-hacker .apropos-photo img {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.45);
 }
 
 /* --- Image de projet --- */
@@ -285,6 +288,7 @@ h3 {
 /* =========================================================
    9. FOOTER
 ========================================================= */
+
 footer {
     margin-top: 80px;
     padding: 30px 20px;
@@ -297,10 +301,15 @@ footer {
 /* =========================================================
    10. RESPONSIVE
 ========================================================= */
+
 @media (max-width: 900px) {
     .apropos-section {
         flex-direction: column;
         text-align: center;
+    }
+
+    .apropos-photo {
+        justify-content: center;
     }
 
     .apropos-photo img {

@@ -6,31 +6,24 @@ document.addEventListener("DOMContentLoaded", () => {
     const header     = document.querySelector("header");
     const themeLabel = document.getElementById("theme-label");
 
-    /* -------------------------
-       SYSTÈME DE THÈMES MULTIPLES
-    -------------------------- */
+    /* =========================================================
+       1. SYSTEME DE THEMES MULTIPLES (light / dark / hacker)
+    ========================================================== */
 
-    // Liste des thèmes dispo (ordre de rotation)
-    const themes = ["light", "dark", "solarized", "hacker"];
+    const themes = ["light", "dark", "hacker"];
 
-    // Récup thème sauvegardé, sinon light
+    // Charger le thème sauvegardé
     let currentTheme = localStorage.getItem("theme") || "light";
-    if (!themes.includes(currentTheme)) {
-        currentTheme = "light";
-    }
+    if (!themes.includes(currentTheme)) currentTheme = "light";
 
     function applyTheme(theme) {
-        // On enlève toutes les classes de thème
+        // Retirer toutes les classes existantes
         themes.forEach(t => body.classList.remove(`theme-${t}`));
 
-        // Enlever tous les thèmes
-        themes.forEach(t => body.classList.remove(`theme-${t}`));
-
-        // Ajouter la classe même pour light
+        // Ajouter la classe du thème actif
         body.classList.add(`theme-${theme}`);
 
-
-        // On sauvegarde
+        // Sauvegarder
         localStorage.setItem("theme", theme);
 
         // Icône du bouton
@@ -42,16 +35,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 case "dark":
                     toggle.textContent = "🌙";
                     break;
-                case "solarized":
-                    toggle.textContent = "🌅";
-                    break;
                 case "hacker":
                     toggle.textContent = "💻";
                     break;
             }
         }
 
-        // Texte du thème + animation
+        // Label du thème + animation
         if (themeLabel) {
             let text = "";
 
@@ -62,9 +52,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 case "dark":
                     text = "Thème : Sombre";
                     break;
-                case "solarized":
-                    text = "Thème : Solaire";
-                    break;
                 case "hacker":
                     text = "Thème : Hacker";
                     break;
@@ -72,18 +59,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
             themeLabel.textContent = text;
 
-            // relance l’anim à chaque changement
+            // relancer l'animation du label
             themeLabel.classList.remove("theme-label-anim");
-            // petit trick pour forcer le reflow
-            void themeLabel.offsetWidth;
+            void themeLabel.offsetWidth; // forcer recalcul du DOM
             themeLabel.classList.add("theme-label-anim");
         }
     }
 
-    // Appliquer thème au chargement
+    // appliquer au chargement
     applyTheme(currentTheme);
 
-    // Gestion du clic sur le bouton (rotation des thèmes + anim bouton)
+    // click -> thème suivant
     if (toggle) {
         toggle.addEventListener("click", () => {
             const currentIndex = themes.indexOf(currentTheme);
@@ -92,7 +78,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             applyTheme(nextTheme);
 
-            // Animation du bouton
+            // animation bouton
             toggle.classList.add("theme-toggle-anim");
             setTimeout(() => {
                 toggle.classList.remove("theme-toggle-anim");
@@ -100,20 +86,22 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    /* -------------------------
-       HIDE HEADER ON SCROLL
-    -------------------------- */
+    /* =========================================================
+       2. HEADER QUI DISPARAIT EN SCROLL
+    ========================================================== */
+
     if (header) {
         let lastScroll = 0;
 
         window.addEventListener("scroll", () => {
             const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
+            // on descend
             if (currentScroll > lastScroll && currentScroll > 50) {
-                // on descend -> cacher header
                 header.classList.add("hide");
-            } else {
-                // on remonte -> montrer header
+            }
+            // on remonte
+            else {
                 header.classList.remove("hide");
             }
 
