@@ -9,7 +9,6 @@
    2. THEMES (LIGHT / DARK / HACKER)
 ========================================================= */
 
-/* Valeurs par défaut */
 :root {
     --bg: #ffffff;
     --text: #1a1a1a;
@@ -48,7 +47,7 @@ body.theme-hacker {
 
 
 /* =========================================================
-   3. GLOBAL & RESET
+   3. GLOBAL
 ========================================================= */
 
 body {
@@ -71,13 +70,8 @@ img {
     max-width: 100%;
 }
 
-ul, ol {
-    padding-left: 20px;
-}
-
-li {
-    margin-bottom: 8px;
-}
+ul, ol { padding-left: 20px; }
+li { margin-bottom: 8px; }
 
 
 
@@ -95,9 +89,7 @@ header {
     transition: background 0.3s ease, transform 0.3s ease;
 }
 
-header.hide {
-    transform: translateY(-100%);
-}
+header.hide { transform: translateY(-100%); }
 
 header h1 {
     font-family: "JetBrains Mono", monospace;
@@ -135,9 +127,7 @@ nav a {
     transition: color 0.2s ease;
 }
 
-nav a:hover {
-    color: var(--link);
-}
+nav a:hover { color: var(--link); }
 
 
 
@@ -168,7 +158,7 @@ nav a:hover {
 #theme-toggle:hover {
     transform: translateY(-1px);
     border-color: var(--text);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
 }
 
 #theme-toggle.theme-toggle-anim {
@@ -212,7 +202,7 @@ h2 {
 }
 
 h3 {
-    margin-top: 30px;
+    margin-top: 0;
     font-size: 20px;
 }
 
@@ -225,15 +215,13 @@ h4 {
 
 
 /* =========================================================
-   8. PAGE D’ACCUEIL (À PROPOS)
+   8. INDEX : À PROPOS
 ========================================================= */
 
-.apropos-section {
+.apropos-content {
     display: flex;
+    gap: 24px;
     align-items: center;
-    justify-content: space-between;
-    gap: 40px;
-    margin-top: 60px;
 }
 
 .apropos-text {
@@ -241,66 +229,60 @@ h4 {
     line-height: 1.6;
 }
 
-.apropos-photo {
-    flex: 0 0 auto;
-    display: flex;
-    justify-content: flex-end;
-}
+.apropos-image { flex: 0 0 240px; }
 
-.apropos-photo img {
-    width: 200px;
-    height: 200px;
+.apropos-img {
+    width: 100%;
     border-radius: 50%;
     object-fit: cover;
-    box-shadow: none;
 }
 
-body.theme-dark .apropos-photo img,
-body.theme-hacker .apropos-photo img {
-    box-shadow: 0 0 25px rgba(0, 0, 0, 0.45);
+/* Mobile */
+@media (max-width: 900px) {
+    .apropos-content {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .apropos-image {
+        max-width: 260px;
+        margin: 0 auto;
+    }
 }
 
 
 
 /* =========================================================
-   9. SECTIONS & CARTES GÉNÉRIQUES
+   9. SECTIONS & CARTES
 ========================================================= */
 
-.section-block {
-    margin-top: 40px;
-}
+.section-block { margin-top: 40px; }
 
 .card {
-    padding: 20px;
+    padding: 24px;
     border-radius: 12px;
-    border: 1px solid rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0,0,0,0.08);
     background: rgba(255, 255, 255, 0.02);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-}
+    box-shadow: 0 4px 10px rgba(0,0,0,0.08);
 
-.card-grid {
     display: flex;
     flex-direction: column;
-    gap: 32px;
-    margin-top: 30px;
+    justify-content: center;
 }
 
-@media (min-width: 900px) {
-    .card-grid {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
+/* Fix espace en haut */
+.card h2 { margin-top: 0; }
 
-    .card-grid .card {
-        flex: 1 1 calc(50% - 16px);
-    }
+/* Liens dans les cartes */
+.card a {
+    color: var(--text);
+    text-decoration: none;
+    font-weight: 600;
 }
 
-.projet-img {
-    width: 100%;
-    max-width: 500px;
-    margin: 20px auto;
-    border-radius: 12px;
+.card a:hover {
+    color: var(--link);
+    text-decoration: underline;
 }
 
 
@@ -312,16 +294,12 @@ body.theme-hacker .apropos-photo img {
 .projet-main-content {
     display: flex;
     gap: 24px;
-    align-items: flex-start;
+    align-items: center;
 }
 
-.projet-main-text {
-    flex: 1;
-}
+.projet-main-text { flex: 1; }
 
-.projet-main-image {
-    flex: 0 0 280px;
-}
+.projet-main-image { flex: 0 0 280px; }
 
 .projet-main-img {
     width: 100%;
@@ -332,6 +310,7 @@ body.theme-hacker .apropos-photo img {
 @media (max-width: 900px) {
     .projet-main-content {
         flex-direction: column-reverse;
+        text-align: center;
     }
 
     .projet-main-image {
@@ -343,12 +322,15 @@ body.theme-hacker .apropos-photo img {
 
 
 /* =========================================================
-   11. FORMULAIRE DE CONTACT
+   11. CONTACT : FORMULAIRE + INFO
 ========================================================= */
 
-.form-group {
-    margin-bottom: 18px;
+.contact-info p {
+    margin: 6px 0;
+    line-height: 1.5;
 }
+
+.form-group { margin-bottom: 18px; }
 
 .form-group label {
     display: block;
@@ -404,25 +386,4 @@ footer {
     text-align: center;
     color: var(--secondary);
     font-size: 14px;
-}
-
-
-
-/* =========================================================
-   13. RESPONSIVE GLOBAL
-========================================================= */
-
-@media (max-width: 900px) {
-    .apropos-section {
-        flex-direction: column;
-        text-align: center;
-    }
-
-    .apropos-photo {
-        justify-content: center;
-    }
-
-    .apropos-photo img {
-        margin-top: 20px;
-    }
 }
