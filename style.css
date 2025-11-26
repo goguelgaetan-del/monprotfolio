@@ -4,6 +4,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=JetBrains+Mono:wght@400;700&display=swap');
 
 
+
 /* =========================================================
    2. THEMES (LIGHT / DARK / HACKER)
 ========================================================= */
@@ -45,8 +46,9 @@ body.theme-hacker {
 }
 
 
+
 /* =========================================================
-   3. GLOBAL
+   3. GLOBAL & RESET
 ========================================================= */
 
 body {
@@ -76,6 +78,7 @@ ul, ol {
 li {
     margin-bottom: 8px;
 }
+
 
 
 /* =========================================================
@@ -109,14 +112,15 @@ header h2 {
 }
 
 
+
 /* =========================================================
    5. NAVIGATION
 ========================================================= */
 
 nav ul {
     list-style: none;
-    padding: 0;
     margin: 0;
+    padding: 0;
 }
 
 nav ul li {
@@ -125,8 +129,8 @@ nav ul li {
 }
 
 nav a {
-    color: var(--text);
     text-decoration: none;
+    color: var(--text);
     font-weight: 600;
     transition: color 0.2s ease;
 }
@@ -136,8 +140,9 @@ nav a:hover {
 }
 
 
+
 /* =========================================================
-   6. BOUTON DE THÈME + LABEL
+   6. BOUTON DE THÈME
 ========================================================= */
 
 #theme-toggle {
@@ -151,18 +156,18 @@ nav a:hover {
     height: 40px;
     font-size: 18px;
     cursor: pointer;
-    color: var(--text);
 
     display: flex;
     align-items: center;
     justify-content: center;
 
+    color: var(--text);
     transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 #theme-toggle:hover {
-    border-color: var(--text);
     transform: translateY(-1px);
+    border-color: var(--text);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -171,6 +176,7 @@ nav a:hover {
     background-color: rgba(0, 0, 0, 0.04);
 }
 
+/* Label du thème */
 #theme-label {
     position: absolute;
     top: 70px;
@@ -191,6 +197,7 @@ nav a:hover {
 
 body.theme-dark #theme-label { color: #58a6ff; }
 body.theme-hacker #theme-label { color: #7fffd4; }
+
 
 
 /* =========================================================
@@ -216,8 +223,9 @@ h4 {
 }
 
 
+
 /* =========================================================
-   8. PAGE ACCUEIL (À PROPOS)
+   8. PAGE D’ACCUEIL (À PROPOS)
 ========================================================= */
 
 .apropos-section {
@@ -253,16 +261,15 @@ body.theme-hacker .apropos-photo img {
 }
 
 
+
 /* =========================================================
-   9. LAYOUT GÉNÉRAL DES SECTIONS / CARTES
+   9. SECTIONS & CARTES GÉNÉRIQUES
 ========================================================= */
 
-/* marge verticale standard pour les sections */
 .section-block {
     margin-top: 40px;
 }
 
-/* carte réutilisable partout */
 .card {
     padding: 20px;
     border-radius: 12px;
@@ -271,7 +278,6 @@ body.theme-hacker .apropos-photo img {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
 }
 
-/* grille de cartes (projets, compétences, etc.) */
 .card-grid {
     display: flex;
     flex-direction: column;
@@ -290,18 +296,54 @@ body.theme-hacker .apropos-photo img {
     }
 }
 
-/* image de projet générique */
 .projet-img {
     width: 100%;
     max-width: 500px;
-    border-radius: 12px;
-    display: block;
     margin: 20px auto;
+    border-radius: 12px;
 }
 
 
+
 /* =========================================================
-   10. FORMULAIRE DE CONTACT
+   10. PROJET : TEXTE GAUCHE / IMAGE DROITE
+========================================================= */
+
+.projet-main-content {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.projet-main-text {
+    flex: 1;
+}
+
+.projet-main-image {
+    flex: 0 0 280px;
+}
+
+.projet-main-img {
+    width: 100%;
+    border-radius: 12px;
+}
+
+/* Mobile */
+@media (max-width: 900px) {
+    .projet-main-content {
+        flex-direction: column-reverse;
+    }
+
+    .projet-main-image {
+        max-width: 350px;
+        margin: 0 auto;
+    }
+}
+
+
+
+/* =========================================================
+   11. FORMULAIRE DE CONTACT
 ========================================================= */
 
 .form-group {
@@ -315,8 +357,8 @@ body.theme-hacker .apropos-photo img {
 }
 
 .form-group input,
-.form-group select,
-.form-group textarea {
+.form-group textarea,
+.form-group select {
     width: 100%;
     padding: 8px 10px;
     border-radius: 6px;
@@ -327,10 +369,10 @@ body.theme-hacker .apropos-photo img {
 }
 
 .form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
+.form-group textarea:focus,
+.form-group select:focus {
     border-color: var(--link);
+    outline: none;
     box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.3);
 }
 
@@ -351,8 +393,9 @@ body.theme-hacker .apropos-photo img {
 }
 
 
+
 /* =========================================================
-   11. FOOTER
+   12. FOOTER
 ========================================================= */
 
 footer {
@@ -364,8 +407,9 @@ footer {
 }
 
 
+
 /* =========================================================
-   12. RESPONSIVE
+   13. RESPONSIVE GLOBAL
 ========================================================= */
 
 @media (max-width: 900px) {
