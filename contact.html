@@ -28,74 +28,49 @@
 
 <main>
 
-<section>
-    <h2>Coordonnées</h2>
+<h2>Contact</h2>
+
+<section class="section-block card">
+    <h3>Mes coordonnées</h3>
 
     <dl>
-        <dt>Nom :</dt>
-        <dd>Gaëtan Goguel de Toux</dd>
-
-        <dt>Téléphone :</dt>
-        <dd>07 68 46 39 01</dd>
-
         <dt>Email :</dt>
         <dd><a href="mailto:j73594587@gmail.com">j73594587@gmail.com</a></dd>
+
+        <dt>Localisation :</dt>
+        <dd>Montélimar – Valence – Lyon</dd>
+
+        <dt>Poste recherché :</dt>
+        <dd>Administrateur systèmes & réseaux en alternance</dd>
     </dl>
 </section>
 
-<section>
-    <h2>Type de poste recherché</h2>
-    <p>
-        Je recherche une alternance en tant qu’<strong>administrateur systèmes
-        et réseaux</strong>, idéalement dans une entreprise située entre Montélimar,
-        Valence et Lyon, en lien avec ma formation à Lyon.
-    </p>
-</section>
+<section class="section-block card" id="contact-form-section">
+    <h3>Formulaire de contact</h3>
 
-<section id="contact-form-section">
-    <h2>Me contacter</h2>
-
-    <form id="contact-form"
-          action="mailto:j73594587@gmail.com"
-          method="post"
-          enctype="text/plain">
+    <form
+        id="contact-form"
+        action="mailto:j73594587@gmail.com"
+        method="post"
+        enctype="text/plain">
 
         <div class="form-group">
-            <label for="nom">Nom complet</label>
-            <input type="text" id="nom" name="Nom" required>
+            <label for="nom">Votre nom</label>
+            <input type="text" id="nom" name="nom" required>
         </div>
 
         <div class="form-group">
-            <label for="email">Adresse email</label>
-            <input type="email" id="email" name="Email" required>
+            <label for="email">Votre email</label>
+            <input type="email" id="email" name="email" required>
         </div>
 
         <div class="form-group">
-            <label for="sujet">Sujet</label>
-            <input type="text" id="sujet" name="Sujet" required>
-        </div>
-
-        <div class="form-group">
-            <label for="type-demande">Type de demande</label>
-            <select id="type-demande" name="Type de demande">
-                <option value="alternance">Alternance / emploi</option>
-                <option value="projet">Projet informatique</option>
-                <option value="question">Question générale</option>
-                <option value="autre">Autre</option>
-            </select>
-        </div>
-
-        <div class="form-group">
-            <label for="message">Message</label>
-            <textarea id="message" name="Message" rows="5" required></textarea>
+            <label for="message">Votre message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
         </div>
 
         <button type="submit" class="btn-primary">Envoyer</button>
     </form>
-
-    <p class="form-note">
-        Le formulaire ouvrira votre logiciel mail via <code>mailto:</code>.
-    </p>
 </section>
 
 </main>

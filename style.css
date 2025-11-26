@@ -8,7 +8,7 @@
    2. THEMES (LIGHT / DARK / HACKER)
 ========================================================= */
 
-/* Valeurs par défaut (équivalent light avant que JS ne pose les classes) */
+/* Valeurs par défaut */
 :root {
     --bg: #ffffff;
     --text: #1a1a1a;
@@ -19,7 +19,7 @@
 
 /* Thème clair */
 body.theme-light {
-    --bg: #ffffff;          /* BLANC PUR pour matcher ton image */
+    --bg: #ffffff;
     --text: #1a1a1a;
     --secondary: #555;
     --link: #0066cc;
@@ -59,13 +59,14 @@ body {
 }
 
 main {
-    max-width: 750px;
+    max-width: 900px;
     margin: auto;
     padding: 40px 20px;
 }
 
 img {
     border-radius: 8px;
+    max-width: 100%;
 }
 
 ul, ol {
@@ -87,13 +88,10 @@ header {
     border-bottom: 1px solid rgba(0,0,0,0.1);
     position: sticky;
     top: 0;
-    z-index: 10;
-    transition:
-        background 0.3s ease,
-        transform 0.3s ease;
+    z-index: 100;
+    transition: background 0.3s ease, transform 0.3s ease;
 }
 
-/* caché quand on scrolle vers le bas */
 header.hide {
     transform: translateY(-100%);
 }
@@ -159,11 +157,7 @@ nav a:hover {
     align-items: center;
     justify-content: center;
 
-    transition:
-        transform 0.25s ease,
-        background-color 0.25s ease,
-        border-color 0.25s ease,
-        box-shadow 0.25s ease;
+    transition: transform 0.25s ease, background-color 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
 }
 
 #theme-toggle:hover {
@@ -172,13 +166,11 @@ nav a:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
-/* anim clic */
 #theme-toggle.theme-toggle-anim {
     transform: rotate(180deg) scale(1.1);
     background-color: rgba(0, 0, 0, 0.04);
 }
 
-/* texte du thème */
 #theme-label {
     position: absolute;
     top: 70px;
@@ -188,30 +180,17 @@ nav a:hover {
     color: var(--secondary);
 }
 
-/* anim texte thème */
 #theme-label.theme-label-anim {
     animation: themeLabelFade 0.4s ease;
 }
 
 @keyframes themeLabelFade {
-    from {
-        opacity: 0;
-        transform: translateY(4px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+    from { opacity: 0; transform: translateY(4px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
-/* couleurs label par thème (optionnel) */
-body.theme-dark #theme-label {
-    color: #58a6ff;
-}
-
-body.theme-hacker #theme-label {
-    color: #7fffd4;
-}
+body.theme-dark #theme-label { color: #58a6ff; }
+body.theme-hacker #theme-label { color: #7fffd4; }
 
 
 /* =========================================================
@@ -221,7 +200,7 @@ body.theme-hacker #theme-label {
 h2 {
     margin-top: 50px;
     margin-bottom: 15px;
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 700;
 }
 
@@ -230,12 +209,17 @@ h3 {
     font-size: 20px;
 }
 
+h4 {
+    margin-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
 
 /* =========================================================
-   8. SECTIONS SPÉCIFIQUES
+   8. PAGE ACCUEIL (À PROPOS)
 ========================================================= */
 
-/* --- À propos : texte gauche / photo droite --- */
 .apropos-section {
     display: flex;
     align-items: center;
@@ -249,33 +233,64 @@ h3 {
     line-height: 1.6;
 }
 
-/* bloc photo */
 .apropos-photo {
     flex: 0 0 auto;
     display: flex;
     justify-content: flex-end;
 }
 
-/* ⚠️ Image de profil
-   - on part de gaetan_profile_circle_no_shadow.png (cercle + fond transparent)
-   - on ne rajoute PAS d'ombre en thème clair pour éviter l'anneau
-*/
 .apropos-photo img {
     width: 200px;
     height: 200px;
     border-radius: 50%;
     object-fit: cover;
-    display: block;
-    box-shadow: none; /* thème clair : aucune ombre */
+    box-shadow: none;
 }
 
-/* On peut ajouter une ombre légère uniquement sur les thèmes sombres si tu veux */
 body.theme-dark .apropos-photo img,
 body.theme-hacker .apropos-photo img {
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.45);
 }
 
-/* --- Image de projet --- */
+
+/* =========================================================
+   9. LAYOUT GÉNÉRAL DES SECTIONS / CARTES
+========================================================= */
+
+/* marge verticale standard pour les sections */
+.section-block {
+    margin-top: 40px;
+}
+
+/* carte réutilisable partout */
+.card {
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    background: rgba(255, 255, 255, 0.02);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+/* grille de cartes (projets, compétences, etc.) */
+.card-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+    margin-top: 30px;
+}
+
+@media (min-width: 900px) {
+    .card-grid {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+
+    .card-grid .card {
+        flex: 1 1 calc(50% - 16px);
+    }
+}
+
+/* image de projet générique */
 .projet-img {
     width: 100%;
     max-width: 500px;
@@ -286,7 +301,58 @@ body.theme-hacker .apropos-photo img {
 
 
 /* =========================================================
-   9. FOOTER
+   10. FORMULAIRE DE CONTACT
+========================================================= */
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid rgba(0,0,0,0.2);
+    background: var(--bg);
+    color: var(--text);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--link);
+    box-shadow: 0 0 0 2px rgba(88, 166, 255, 0.3);
+}
+
+.btn-primary {
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    background: var(--link);
+    color: #fff;
+    font-weight: 600;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.btn-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+}
+
+
+/* =========================================================
+   11. FOOTER
 ========================================================= */
 
 footer {
@@ -299,7 +365,7 @@ footer {
 
 
 /* =========================================================
-   10. RESPONSIVE
+   12. RESPONSIVE
 ========================================================= */
 
 @media (max-width: 900px) {
