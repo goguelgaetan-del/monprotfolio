@@ -6,15 +6,11 @@
     <title>Contact – Gaëtan Goguel de Toux</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<script src="style.js"></script>
-</body>
-</html>
-
-<body>
+<body class="theme-light">
 
 <header>
-    <h1>Contact</h1>
-    <h2>Me contacter pour une alternance ou un projet IT</h2>
+    <h1>Gaëtan GOGUEL DE TOUX</h1>
+    <h2>Étudiant en alternance – Administrateur Systèmes & Réseaux</h2>
 
     <nav>
         <ul>
@@ -25,48 +21,82 @@
             <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
-    <button id="theme-toggle" aria-label="Changer de thème">🌞</button>
-    <div id="theme-label" aria-live="polite"></div>
 
+    <button id="theme-toggle">🌞</button>
+    <div id="theme-label" aria-live="polite"></div>
 </header>
 
 <main>
 
-    <section>
-        <h2>Coordonnées</h2>
+<section>
+    <h2>Coordonnées</h2>
 
-        <dl>
-            <dt>Nom :</dt>
-            <dd>Gaëtan Goguel de Toux</dd>
+    <dl>
+        <dt>Nom :</dt>
+        <dd>Gaëtan Goguel de Toux</dd>
 
-            <dt>Téléphone :</dt>
-            <dd>07 68 46 39 01</dd>
+        <dt>Téléphone :</dt>
+        <dd>07 68 46 39 01</dd>
 
-            <dt>Email :</dt>
-            <dd><a href="mailto:goguelgaetan@gmail.com">goguelgaetan@gmail.com</a></dd>
+        <dt>Email :</dt>
+        <dd><a href="mailto:j73594587@gmail.com">j73594587@gmail.com</a></dd>
+    </dl>
+</section>
 
-            <dt>Adresse :</dt>
-            <dd>2 rue Alexandre Pontemairy, Montélimar</dd>
-        </dl>
-    </section>
+<section>
+    <h2>Type de poste recherché</h2>
+    <p>
+        Je recherche une alternance en tant qu’<strong>administrateur systèmes
+        et réseaux</strong>, idéalement dans une entreprise située entre Montélimar,
+        Valence et Lyon, en lien avec ma formation à Lyon.
+    </p>
+</section>
 
-    <section>
-        <h2>Type de poste recherché</h2>
-        <p>
-            Je recherche une alternance en tant qu’<strong>administrateur systèmes
-            et réseaux</strong>, idéalement dans une entreprise située entre Montélimar,
-            Valence et Lyon, en lien avec une formation technique à Lyon.
-        </p>
-    </section>
+<section id="contact-form-section">
+    <h2>Me contacter</h2>
 
-    <aside>
-        <h3>Informations complémentaires</h3>
-        <ul>
-            <li>Date de naissance : 1<sup>er</sup> décembre 2004.</li>
-            <li>Permis B (voiture) et permis A (moto).</li>
-            <li>Mobilité : région Auvergne-Rhône-Alpes.</li>
-        </ul>
-    </aside>
+    <form id="contact-form"
+          action="mailto:j73594587@gmail.com"
+          method="post"
+          enctype="text/plain">
+
+        <div class="form-group">
+            <label for="nom">Nom complet</label>
+            <input type="text" id="nom" name="Nom" required>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Adresse email</label>
+            <input type="email" id="email" name="Email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="sujet">Sujet</label>
+            <input type="text" id="sujet" name="Sujet" required>
+        </div>
+
+        <div class="form-group">
+            <label for="type-demande">Type de demande</label>
+            <select id="type-demande" name="Type de demande">
+                <option value="alternance">Alternance / emploi</option>
+                <option value="projet">Projet informatique</option>
+                <option value="question">Question générale</option>
+                <option value="autre">Autre</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="Message" rows="5" required></textarea>
+        </div>
+
+        <button type="submit" class="btn-primary">Envoyer</button>
+    </form>
+
+    <p class="form-note">
+        Le formulaire ouvrira votre logiciel mail via <code>mailto:</code>.
+    </p>
+</section>
 
 </main>
 
@@ -74,5 +104,6 @@
     <p>© 2025 Gaëtan Goguel de Toux</p>
 </footer>
 
+<script src="style.js"></script>
 </body>
 </html>
